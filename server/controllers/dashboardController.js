@@ -29,11 +29,7 @@ exports.dashboard = async (req, res) => {
       .skip(perPage * page - perPage)
       .limit(perPage)
       .exec(function (err, notes) {
-<<<<<<< HEAD
         Note.count().exec(function (err, count) {
-=======
-        Note.count().exec(function (err, count){
->>>>>>> master
           if (err) return next(err);
           res.render("dashboard/index", {
             userName: req.user.firstName,
@@ -45,11 +41,7 @@ exports.dashboard = async (req, res) => {
           });
         });
       });
-<<<<<<< HEAD
   } catch (error) {
-=======
-  }catch (error) {
->>>>>>> master
     console.log(error);
   }
 };

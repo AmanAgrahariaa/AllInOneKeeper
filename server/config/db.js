@@ -1,17 +1,18 @@
-<<<<<<< HEAD
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 
 
-const Connection = ()=>{
-     mongoose.set('strictQuery', true);
+// const Connection = ()=>{
+//      mongoose.set('strictQuery', true);
 
-  mongoose.connect("mongodb://localhost:27017/NotesDB",{useUnifiedTopology : true,useNewUrlParser: true})
-  .then(()=>console.log("connection successfull .."))
-  .catch((err)=>console.log(err));
-}
+//   mongoose.connect("mongodb://localhost:27017/NotesDB",{useUnifiedTopology : true,useNewUrlParser: true})
+//   .then(()=>console.log("connection successfull .."))
+//   .catch((err)=>console.log(err));
+// }
 
-Connection();
-=======
+// Connection();
+
+
+
 const mongoose = require('mongoose');
 require('dotenv').config();
 
@@ -25,4 +26,3 @@ const Connection = ()=>{
 
 }
 Connection();
->>>>>>> master
