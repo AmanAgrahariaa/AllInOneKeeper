@@ -73,6 +73,10 @@ app.set('view engine','ejs');
 app.use('/', require('./server/routes/auth'));
 app.use('/', require('./server/routes/index'));
 app.use('/', require('./server/routes/dashboard'));
+<<<<<<< HEAD
+=======
+app.use('/',require('./server/routes/bookmark'));
+>>>>>>> master
 
 // Handle 404
 app.get('*', function(req, res) {

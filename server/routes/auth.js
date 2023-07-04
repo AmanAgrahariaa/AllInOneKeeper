@@ -10,7 +10,11 @@ passport.use(new GoogleStrategy({
      callbackURL: process.env.GOOGLE_CALLBACK_URL,
    },
    async function(accessToken, refreshToken, profile, done) {
+<<<<<<< HEAD
     
+=======
+     
+>>>>>>> master
     const newUser = {
      googleId : profile.id,
      displayName : profile.displayName,

@@ -1,0 +1,46 @@
+<div class="container-fluid container-fluid-custom pb-5 mb-5">
+  <div class="row mb-4">
+    <div class="col">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/bookmark">bookmark</a></li>
+          <li class="breadcrumb-item active">Add Bookmark</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+  <div class="row mb-4">
+    <div class="col">
+      <h1 class="h3">Add Bookmark</h1>
+    </div>
+  </div>
+  <form action="/bookmark/add" method="POST">
+    <div class="row mb-4">
+      <div class="col">
+        <input type="text" class="form-control fw-bold border-0 fs-4" id="title" name="title" placeholder="Title"
+          required>
+      </div>
+    </div>
+    <div class="row mb-4">
+      <div class="col">
+        <input type="text" class="form-control" id="url" name="url" placeholder="Url" required>
+      </div>
+    </div>
+    <div class="row mb-4">
+      <div class="col">
+        <input type="text" class="form-control" id="tags" name="tags" placeholder="Tags" data-role="tagsinput" required>
+      </div>
+    </div>
+    <div class="row mb-4">
+      <div class="col">
+        <textarea required class="form-control pt-5 fs-4" id="body" name="body" placeholder="Take a note..."
+          rows="12"></textarea>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <button type="submit" class="btn btn-primary btn-lg">+ Add Bookmark</button>
+      </div>
+    </div>
+  </form>
+</div>
