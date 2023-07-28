@@ -9,12 +9,21 @@ require('./server/config/db');
 const session = require('express-session');
 const passport = require('passport');
 const MongoStore = require('connect-mongo');
+const cookieParser = require('cookie-parser');
+
 
 const app = express();
 const port = 5000 || process.env.PORT;
 // process.env is a reference to the system environment variables. 
 // PORT means the application expects an environment variable named “PORT” to be set.
 // mongodb://localhost:27017
+
+
+
+// Add JWT_SECRET_KEY for JWT-based authentication
+const JWT_SECRET_KEY = 'your_secret_key';
+
+
 
 app.use(session({
      secret: 'keyboard cat',
@@ -51,9 +60,11 @@ app.use(express.json());
 // 4> If you use express.json() it will parse the body from post/fetch request except from html post form. It wont parse information from the html post form (for that use express.urlencoded())
 
 
+
+
+app.use(cookieParser());
 app.use(methodOverride("_method"));
 
-require('./server/config/db');
 
 // static file
 app.use(express.static('public'));
