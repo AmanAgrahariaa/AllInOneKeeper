@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const PasswordUser = require('../models/PasswordUser');
 require('dotenv').config();
 const saltRounds = 10;
-const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY; // Replace this with your secret key for JWT
+const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;  
 
 const passwordAuthController = {};
 
@@ -33,7 +33,7 @@ passwordAuthController.loginSubmit = async (req, res) => {
     }
 
     // Generate JWT token
-    const token = jwt.sign({ userId: user._id }, JWT_SECRET_KEY, { expiresIn: '5m' });
+    const token = jwt.sign({ userId: user._id }, JWT_SECRET_KEY, { expiresIn: '10m' });
 
     // Set the token in a cookie
     res.cookie('password_jwt', token, { maxAge: 60000, httpOnly: true });

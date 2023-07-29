@@ -1,25 +1,80 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login - Password Manager</title>
-</head>
+  <!-- Custom CSS -->
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
 
-<body>
-  <h1>Login</h1>
-  <% if (error) { %>
-    <p><%= error %></p>
-  <% } %>
-  <form action="/password/login" method="POST">
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required><br>
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required><br>
-    <button type="submit">Login</button>
-  </form>
-  <p>Don't have an account? <a href="/password/signup">Sign up</a></p>
-</body>
+    .login-card {
+      max-width: 400px;
+      margin: 0 auto;
+      margin-top: 100px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
 
-</html>
+    .login-card .card-body {
+      padding: 30px;
+    }
+
+    .login-card .card-title {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 30px;
+      color: #333;
+    }
+
+    .login-card .form-control {
+      border-color: #ccc;
+    }
+
+    .login-card .form-control:focus {
+      box-shadow: none;
+      border-color: #80bdff;
+    }
+
+    .login-card .btn-primary {
+      background-color: #007bff;
+      border: none;
+      width: 100%;
+    }
+
+    .login-card .btn-primary:hover {
+      background-color: #0056b3;
+    }
+
+    .login-card .create-account {
+      margin-top: 20px;
+      text-align: center;
+    }
+  </style>
+ 
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 mx-auto">
+        <div class="card login-card">
+          <div class="card-body">
+            <h1 class="card-title text-center">Login in VaultLock</h1>
+            <% if (error) { %>
+            <p class="text-danger text-center"><%= error %></p>
+            <% } %>
+            <form action="/password/login" method="POST">
+              <div class="mb-3">
+                <label for="email" class="form-label">Email:</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Password:</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+              </div>
+              <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+            <div class="create-account">
+              <p>Don't have an account? <a href="/password/signup">Sign up</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ 

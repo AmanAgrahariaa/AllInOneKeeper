@@ -1,9 +1,7 @@
 const password = require("../models/Password");
 const mongoose = require("mongoose");
-const bcrypt = require('bcrypt');
 const CryptoJS = require("crypto-js");
-
-
+require('dotenv').config();
 
 
 const secretKey = process.env.YourSecretKey;
@@ -31,46 +29,13 @@ exports.password = async (req, res) => {
   const locals = {
     
     title: "VaultLock",
-    description: "NodeJS Notes App.",
+    description: "All In One Keeper.",
   };
 
   try {
     password.aggregate([
       { $sort: { updatedAt: -1 } },
-      { $match: { user: mongoose.Types.ObjectId(req.user.id) } },
-      {
-        $project: {
-            website: {
-              $cond: {
-                if: { $gte: [{ $strLenCP: "$website" }, 100] },
-                then: { $substr: ["$website", 0, 100] },
-                else: "$website"
-              }
-            },
-            username: {
-              $cond: {
-                if: { $gte: [{ $strLenCP: "$username" }, 100] },
-                then: { $substr: ["$username", 0, 100] },
-                else: "$username"
-              }
-            },
-            password: {
-              $cond: {
-                if: { $gte: [{ $strLenCP: "$password" }, 10000] },
-                then: { $substr: ["$password", 0, 10000] },
-                else: "$password"
-              }
-            },
-            category: {
-              $cond: {
-                if: { $gte: [{ $strLenCP: "$category" }, 10000] },
-                then: { $substr: ["$category", 0, 10000] },
-                else: "$category"
-              }
-            }
-          },
-          
-      },
+      { $match: { user: mongoose.Types.ObjectId(req.user.id) } }
     ])
       .skip(perPage * page - perPage)
       .limit(perPage)
@@ -104,7 +69,6 @@ exports.passwordViewNote = async (req, res) => {
 
   if (passwordItem) {
     passwordItem.password = decryptData(passwordItem.password);
-    console.log('testing...');
     res.render("password/view-password", {
       passwordID: req.params.id,
       password:passwordItem,
@@ -193,22 +157,6 @@ exports.passwordAddNoteSubmit = async (req, res) => {
 
 
 
-
-
-
-/**
- * GET /
- * Search
- */
-exports.passwordSearch = async (req, res) => {
-  try {
-    res.render("password/search", {
-      searchResults: "",
-      layout: "../views/layouts/password",
-    });
-  } catch (error) { }
-};
-
 /**
  * POST /
  * Search For Notes
@@ -222,7 +170,6 @@ exports.passwordSearchSubmit = async (req, res) => {
       $or: [
         { website: { $regex: new RegExp(searchNoSpecialChars, "i") } },
         { category: { $regex: new RegExp(searchNoSpecialChars, "i") } }
-        // { tags: {$regex: new RegExp(searchNoSpecialChars,"i")}}
       ],
     }).where({ user: req.user._id });
 

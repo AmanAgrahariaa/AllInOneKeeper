@@ -11,8 +11,7 @@ router.get('/dashboard/item/:id', isLoggedIn, dashboardController.dashboardViewN
 router.put('/dashboard/item/:id', isLoggedIn, dashboardController.dashboardUpdateNote);
 router.delete('/dashboard/item-delete/:id', isLoggedIn, dashboardController.dashboardDeleteNote);
 router.get('/dashboard/add', isLoggedIn, dashboardController.dashboardAddNote);
-router.post('/dashboard/add', isLoggedIn, dashboardController.dashboardAddNoteSubmit);
-router.get('/dashboard/search', isLoggedIn, dashboardController.dashboardSearch);
+router.post('/dashboard/add', isLoggedIn, dashboardController.dashboardAddNoteSubmit); 
 router.post('/dashboard/search', isLoggedIn, dashboardController.dashboardSearchSubmit);
 
 

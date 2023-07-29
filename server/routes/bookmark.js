@@ -12,8 +12,7 @@ router.get('/bookmark/item/:id', isLoggedIn, bookmarkController.bookmarkViewNote
 router.put('/bookmark/item/:id', isLoggedIn, bookmarkController.bookmarkUpdateNote);
 router.delete('/bookmark/item-delete/:id', isLoggedIn, bookmarkController.bookmarkDeleteNote);
 router.get('/bookmark/add', isLoggedIn, bookmarkController.bookmarkAddNote);
-router.post('/bookmark/add', isLoggedIn, bookmarkController.bookmarkAddNoteSubmit);
-// router.get('/bookmark/search', isLoggedIn, bookmarkController.bookmarkSearch);
+router.post('/bookmark/add', isLoggedIn, bookmarkController.bookmarkAddNoteSubmit); 
 router.post('/bookmark/search', isLoggedIn, bookmarkController.bookmarkSearchSubmit);
 
 module.exports = router;

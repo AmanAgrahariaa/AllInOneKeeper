@@ -1,8 +1,8 @@
 require('dotenv').config();
 // This middleware checks JWT authentication for password manager routes
 const jwt = require('jsonwebtoken');
-const JWT_SECRET_KEY =process.env.JWT_SECRET_KEY; // Replace this with your secret key for JWT
-
+const JWT_SECRET_KEY =process.env.JWT_SECRET_KEY;  
+// console.log(JWT_SECRET_KEY);
 const checkPasswordAuth = (req, res, next) => {
   try {
     const token = req.cookies.password_jwt;

@@ -15,3 +15,4 @@ const passwordUserSchema = new mongoose.Schema({
 const PasswordUser = mongoose.model('PasswordUser', passwordUserSchema);
 
 module.exports = PasswordUser;
+

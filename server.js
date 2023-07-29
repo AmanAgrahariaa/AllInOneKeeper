@@ -20,11 +20,6 @@ const port = 5000 || process.env.PORT;
 
 
 
-// Add JWT_SECRET_KEY for JWT-based authentication
-const JWT_SECRET_KEY = 'your_secret_key';
-
-
-
 app.use(session({
      secret: 'keyboard cat',
      resave: false,
@@ -90,7 +85,6 @@ app.use('/', require('./server/routes/password'));
 
 // Handle 404
 app.get('*', function(req, res) {
-  //res.status(404).send('404 Page Not Found.')
   res.status(404).render('404');
 })
 

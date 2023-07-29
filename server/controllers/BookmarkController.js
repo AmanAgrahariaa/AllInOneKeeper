@@ -12,7 +12,7 @@ exports.bookmark = async (req, res) => {
 
   const locals = {
     title: "WebArchive",
-    description: "NodeJS Notes App.",
+    description: "All In One Keeper.",
   };
 
   try {
@@ -21,10 +21,10 @@ exports.bookmark = async (req, res) => {
       { $match: { user: mongoose.Types.ObjectId(req.user.id) } },
       {
         $project: {
-          title: { $substr: ["$title", 0, 50] },
-          url: {$substr: ["$url",0,1000]},
-          body: { $substr: ["$body", 0, 100] },
-          tags: {$substr:["$tags",0,100]}
+          title: 1,
+          url: 1,
+          body: { $substr: ["$body", 0, 150] },
+          tags:1
         },
       },
     ])
@@ -143,18 +143,7 @@ exports.bookmarkAddNoteSubmit = async (req, res) => {
   }
 };
 
-/**
- * GET /
- * Search
- */
-// exports.bookmarkSearch = async (req, res) => {
-//   try {
-//     res.render("bookmark/search", {
-//       searchResults: "",
-//       layout: "../views/layouts/bookmark",
-//     });
-//   } catch (error) { }
-// };
+ 
 
 /**
  * POST /

@@ -12,7 +12,7 @@ exports.dashboard = async (req, res) => {
 
   const locals = {
     title: "Dashboard",
-    description: "NodeJS Notes App.",
+    description: "All In One Keeper.",
   };
 
   try {
@@ -21,8 +21,8 @@ exports.dashboard = async (req, res) => {
       { $match: { user: mongoose.Types.ObjectId(req.user.id) } },
       {
         $project: {
-          title: { $substr: ["$title", 0, 30] },
-          body: { $substr: ["$body", 0, 100] },
+          title: 1,
+          body: { $substr: ["$body", 0, 150] },
         },
       },
     ])
@@ -119,19 +119,7 @@ exports.dashboardAddNoteSubmit = async (req, res) => {
   }
 };
 
-/**
- * GET /
- * Search
- */
-exports.dashboardSearch = async (req, res) => {
-  try {
-    res.render("dashboard/search", {
-      searchResults: "",
-      layout: "../views/layouts/dashboard",
-    });
-  } catch (error) {}
-};
-
+ 
 /**
  * POST /
  * Search For Notes
