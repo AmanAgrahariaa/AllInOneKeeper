@@ -19,7 +19,7 @@ passwordAuthController.loginSubmit = async (req, res) => {
     const { email, password } = req.body;
 
     // Find the user in the database
-    const user = await PasswordUser.findOne({ email });
+    const user = await PasswordUser.findOne({ email }).where({ user: req.user.id });
 
     if (!user) {
       return renderLoginForm(req, res, 'Invalid credentials');
@@ -33,10 +33,10 @@ passwordAuthController.loginSubmit = async (req, res) => {
     }
 
     // Generate JWT token
-    const token = jwt.sign({ userId: user._id }, JWT_SECRET_KEY, { expiresIn: '10m' });
+    const token = jwt.sign({ userId: user.user }, JWT_SECRET_KEY, { expiresIn: '2m' });
 
     // Set the token in a cookie
-    res.cookie('password_jwt', token, { maxAge: 60000, httpOnly: true });
+    res.cookie('password_jwt', token, { maxAge: 120000, httpOnly: true });
 
     // Redirect to the password manager's index page
     res.redirect('/password');
@@ -53,16 +53,22 @@ passwordAuthController.signupSubmit = async (req, res) => {
 
     // Check if the email already exists
     const existingUser = await PasswordUser.findOne({ email });
-
+    const exists = await PasswordUser.findOne({user: req.user.id});
+    console.log(req.user.id);
+    console.log(req.user._id);
     if (existingUser) {
       return res.render('password/signup', { error: 'Email already registered' });
+    }
+    if(exists)
+    {
+      return res.render('password/signup', { error: 'User already registered, Invalid Email' });
     }
 
     // Hash the password
     const hashedPassword = await bcrypt.hash(password, saltRounds);
 
     // Create a new user in the database
-    await PasswordUser.create({ email, password: hashedPassword });
+    await PasswordUser.create({user:req.user._id, email, password: hashedPassword });
 
     // Redirect to the password manager's index page
     res.redirect('/password');
@@ -73,3 +79,4 @@ passwordAuthController.signupSubmit = async (req, res) => {
 };
 
 module.exports = passwordAuthController;
+

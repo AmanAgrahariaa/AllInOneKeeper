@@ -75,6 +75,7 @@ app.set('layout','./layouts/main');
 // layout (e.g. 'layouts/layout.ejs'), just set layout property in express app settings.
 app.set('view engine','ejs');
 
+
 // Routes
 app.use('/', require('./server/routes/auth'));
 app.use('/', require('./server/routes/index'));

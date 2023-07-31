@@ -11,6 +11,8 @@ const checkPasswordAuth = require('../middleware/checkPasswordAuth');
 
 // Login form route
 router.get('/password/login', (req, res) => {
+  console.log("login in vaultlock ");
+  console.log(req.body);
   res.render('password/login', { error: null });
 });
 
@@ -19,6 +21,8 @@ router.post('/password/login', loginSubmit);
 
 // Signup form route
 router.get('/password/signup', (req, res) => {
+  console.log("signup in vaultlock ");
+  console.log(req.body);
   res.render('password/signup', { error: null });
 });
 
