@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const PasswordUser = require('../models/PasswordUser');
 require('dotenv').config();
 const saltRounds = 10;
-const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;  
+const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;
 
 const passwordAuthController = {};
 
