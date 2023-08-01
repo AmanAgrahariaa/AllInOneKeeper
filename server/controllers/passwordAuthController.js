@@ -54,8 +54,8 @@ passwordAuthController.signupSubmit = async (req, res) => {
     // Check if the email already exists
     const existingUser = await PasswordUser.findOne({ email });
     const exists = await PasswordUser.findOne({user: req.user.id});
-    console.log(req.user.id);
-    console.log(req.user._id);
+    // console.log(req.user.id);
+    // console.log(req.user._id);
     if (existingUser) {
       return res.render('password/signup', { error: 'Email already registered' });
     }

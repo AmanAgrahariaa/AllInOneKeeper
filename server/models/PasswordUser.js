@@ -14,7 +14,15 @@ const passwordUserSchema = new Schema({
   password: {
     type: String,
     required: true
-  }
+  },
+  resetToken: {
+    type: String,
+    default: null,
+  },
+  resetTokenExpiry: {
+    type: Date,
+    default: null,
+  },
 });
 
 const PasswordUser = mongoose.model('PasswordUser', passwordUserSchema);

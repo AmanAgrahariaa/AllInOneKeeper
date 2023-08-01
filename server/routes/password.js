@@ -4,35 +4,49 @@ const { isLoggedIn } = require('../middleware/checkAuth');
 const { loginSubmit, signupSubmit } = require('../controllers/passwordAuthController');
 const passwordController = require('../controllers/passwordController');
 const checkPasswordAuth = require('../middleware/checkPasswordAuth');
+const forgetPasswordController = require('../controllers/forget_passwordController');
+
 
 /**
  * Password Manager Authentication Routes 
 */
 
+
 // Login form route
-router.get('/password/login', (req, res) => {
+router.get('/password/login',isLoggedIn, (req, res) => {
+  
   console.log("login in vaultlock ");
   console.log(req.body);
   res.render('password/login', { error: null });
 });
 
 // Login form submission route
-router.post('/password/login', loginSubmit);
+router.post('/password/login',isLoggedIn, loginSubmit);
 
 // Signup form route
-router.get('/password/signup', (req, res) => {
+router.get('/password/signup',isLoggedIn, (req, res) => {
   console.log("signup in vaultlock ");
   console.log(req.body);
   res.render('password/signup', { error: null });
 });
 
 // Signup form submission route
-router.post('/password/signup', signupSubmit);
+router.post('/password/signup',isLoggedIn, signupSubmit);
 
 
 /**
  * Password Manager Routes 
 */
+
+
+// Password manager's forget password form
+router.get('/password/forget-password',isLoggedIn, forgetPasswordController.getForgetPassword);
+router.post('/password/forget-password',isLoggedIn, forgetPasswordController.postForgetPassword);
+
+// Password manager's reset password form
+router.get('/password/reset-password/:id/:token',isLoggedIn, forgetPasswordController.getResetPassword);
+router.post('/password/reset-password/:id/:token',isLoggedIn, forgetPasswordController.postResetPassword);
+
 
 // Middleware for checking JWT authentication for password manager routes
 router.use('/password', checkPasswordAuth);

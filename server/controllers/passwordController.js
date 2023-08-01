@@ -24,6 +24,7 @@ function decryptData(encryptedData) {
 */
 
 exports.password = async (req, res) => {
+ 
   let perPage = 10;
   let page = req.query.page || 1;
   const locals = {
@@ -63,6 +64,7 @@ exports.password = async (req, res) => {
  * View Specific Note
  */
 exports.passwordViewNote = async (req, res) => {
+ 
   const passwordItem = await password.findById({ _id: req.params.id })
     .where({ user: req.user.id })
     .lean();
@@ -181,3 +183,5 @@ exports.passwordSearchSubmit = async (req, res) => {
     console.log(error);
   }
 };
+
+
