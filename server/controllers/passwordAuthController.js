@@ -33,10 +33,10 @@ passwordAuthController.loginSubmit = async (req, res) => {
     }
 
     // Generate JWT token
-    const token = jwt.sign({ userId: user.user }, JWT_SECRET_KEY, { expiresIn: '2m' });
+    const token = jwt.sign({ userId: user.user }, JWT_SECRET_KEY, { expiresIn: '15m' });
 
     // Set the token in a cookie
-    res.cookie('password_jwt', token, { maxAge: 120000, httpOnly: true });
+    res.cookie('password_jwt', token, { maxAge: 900000, httpOnly: true });
 
     // Redirect to the password manager's index page
     res.redirect('/password');
