@@ -108,10 +108,6 @@ We welcome contributions to enhance our platform further. To contribute, follow 
 4. Push to the branch: `git push origin my-new-feature`
 5. Submit a pull request
 
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-
 ## Contact
 
 For any inquiries or suggestions, please contact Aman Agrahari(mailto:agraharia329@gmail.com). We would love to hear from you!
